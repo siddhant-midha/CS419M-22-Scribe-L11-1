@@ -1,0 +1,26 @@
+
+\section{Stability of Ranking Loss}
+We have the ranking loss for all pairs of $x_{bad}$ and $x_{good}$ given by -
+$${f(w) = \sum_{\substack{y_{bad}=-1 \\ y_{good}=+1 \\ x_{bad,good}\in S}}( 1 + w^{T}x_{bad} -  w^{T}x_{good})}$$
+
+What should be the regularizer $\lambda$ that should be added to the loss to ensure that it is stable?
+
+Suggestion - If we consider $x_{bad} - x_{good}$ as a new proxy variable , then the regulariser will be the number of pairs of $x_{bad}$ and $x_{good}$. So the loss function becomes
+$${f(w) = \sum_{\substack{y_{bad}=-1 \\ y_{good}=+1 \\ x_{bad,good}\in S}}( 1 + w^{T}x_{bad} -  w^{T}x_{good}) + \lambda |S_{good}||S_{bad}|||w||^2}$$
+
+However proving the stability for this is not the same as proving the stability for a single variable as before because here, when we change the set S by replacing an old point with a new point ${x,y}$ to get $S^{'}$, all pairs in the summation of which it is a part will change. Thus, this is different from a point-wise loss. 
+
+Optimal w can be easily found for this case by differentiating the loss term wrt w to get
+
+$${w = \sum\frac{(x_{good} - x_{bad})}{2\lambda|S_{good}||S_{bad}|}}$$
+
+What would it be if the loss was calculated using the hinge function and what is the condition of stability?
+$${f(w) = \sum_{\substack{y_{bad}=-1 \\ y_{good}=+1 \\ x_{bad,good}\in S}}( 1 + w^{T}x_{bad} -  w^{T}x_{good})_{+} + \lambda |S_{good}||S_{bad}|||w||^2}$$
+
+Following the same line of proof as earlier, we will get some bound in terms of ${\frac{1}{|S_{good}|} or \frac{1}{|S_{bad}|}}$
+
+But can we find some regulariser that is independent of the ratio of $x_{good}$ to $x_{bad}$?
+
+Solution - If we use the following regulariser, though we would be over-regularising w but we can be ensured stability.
+
+$${\frac {|S|(|S|-1)}{2}}$$

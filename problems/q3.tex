@@ -1,0 +1,22 @@
+\section{Formation of Dual}
+Say we are dealing with the traditional linear regression problem. That is, given a dataset $\mathfrak{D}$,
+\[\mathfrak{D} = \{(x_i,y_i) \mid i \in [|\mathfrak{D}|], x_i \in \mathbb{R}^d, y_i \in \mathbb{R}\}\]
+where, $[n] := \{1,2, \dots n\} \forall n \in \mathbb{N}$.
+
+
+We want to perform the following minimization,
+\[\underset{{w}}{\text{min}}\sum_{i}(y_i - {w}^Tx_i)^2 + ||w||^2\]
+We ask the following question.
+\begin{center}
+    \underline{Question} Can we obtain the dual form of this problem, just like we did in the case of classification?
+\end{center}
+We will start by converting this unconstrained optimization to a constrained optimization problem. Further, we should check whether the constrained optimization problem is convex.
+With the idea of minimizing each of the square terms in mind, we define $\zeta_i$ such that
+\[\zeta_i \geq (y_i - w^Tx_i) \text{ ,with } \zeta_i \geq 0 \text{ } \forall i\]
+Thus now we have the problem:
+\[\underset{w,\zeta_i}{min}(\sum_i\zeta_i + \lambda||w||^2)\]
+\[\textit{such that } \zeta_i \geq (y_i - w^Tx_i) \text{ } \forall i\]
+Now, the second equation above gives us the constraint, and then we have
+\[\underset{\alpha_i,\beta_i}{max}\text{ }\underset{w,\zeta_i}{min}\left(\lambda||w||^2 + \sum_i(\zeta_i + \alpha_i((y_i - w^Tx_i)^2 - \zeta_i) - \beta_i\zeta_i)\right)\]
+Further note that at the optimum value of $\zeta_i = \zeta_i^*$, the following would hold,
+\[(y_i - w^Tx_i)^2 = \zeta_i^* \text{ } \forall i \text{   (Why?)}\]
