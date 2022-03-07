@@ -1,0 +1,18 @@
+\section{Regularization of bias}
+The primary aim of adding a bias in our model is to have clearly demarcated decision boundaries.Theoretically, the bias can be regularized, but in practice it makes little sense to do the same. For the purpose of regularization, the bias can be taken as a hyperparameter along with w i.e.,
+\begin{equation*}
+    [w,b]\cdot[x,1] = w^Tx+b
+\end{equation*}
+But rather than adding separate term of $\lambda b^2$ to our loss function, the performance of the model can instead be analyzed by using cross validation.\\
+Moreover, there might be cases where w is small but the corresponding bias is high.
+Consider the following scenario shown in figure - 
+\newline
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale = 0.5]{pictures/ifbregularise.png}
+    \caption{If the bias is regularized}
+\end{figure}
+
+
+Here, unless the origin isn't between the two clusters shown, regularization of the bias has no added advantage for the model. Therefore, regularization of bias generally leads to underfitting and is usually not the method adopted.
+
